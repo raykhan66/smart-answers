@@ -1,68 +1,54 @@
 class QuestionPresenter < NodePresenter
-  extend Forwardable
-  delegate [
-    :translate!,
-    :translate_and_render,
-    :translate_option,
-    :value_for_interpolation,
-    :number_with_delimiter
-  ] => :@renderer
-
   def initialize(i18n_prefix, node, state = nil, options = {})
     super(i18n_prefix, node, state)
-    @renderer = options[:renderer] || SmartAnswer::I18nRenderer.new(
-      i18n_prefix: @i18n_prefix,
-      node: @node,
-      state: @state
+    @renderer = options[:renderer] || SmartAnswer::ErbRenderer.new(
+      template_directory: @node.template_directory,
+      template_name: @node.name.to_s,
+      locals: @state.to_hash,
     )
   end
 
   def title
-    translate!('title') || @node.name.to_s.humanize
-  end
-
-  def error
-    if @state.error.present?
-      translate!(@state.error.to_sym) || error_message || I18n.translate('flow.defaults.error_message')
-    end
-  end
-
-  def error_message
-    translate!('error_message')
+    title = @renderer.content_for(:title, html: false)
+    title.present? ? title.chomp : super
   end
 
   def hint
-    translate!('hint')
+    hint = @renderer.content_for(:hint, html: false)
+    hint && hint.chomp
   end
 
   def label
-    translate!('label')
+    label = @renderer.content_for(:label, html: false)
+    label && label.chomp
   end
 
   def suffix_label
-    translate!('suffix_label')
+    suffix_label = @renderer.content_for(:suffix_label, html: false)
+    suffix_label && suffix_label.chomp
   end
 
-  def has_labels?
-    label.present? || suffix_label.present?
-  end
-
-  def body(html: true)
-    translate_and_render('body', html: html)
-  end
-
-  def post_body
-    translate_and_render('post_body', html: true)
+  def error_message
+    error_message = @renderer.content_for(:error_message, html: false)
+    error_message && error_message.chomp
   end
 
   def options
-    @node.options.map do |option|
-      OpenStruct.new(label: translate_option(option), value: option)
+    @renderer.options.map do |value, label|
+      OpenStruct.new(label: label, value: value.to_s)
     end
   end
 
-  def to_response(input)
-    @node.to_response(input)
+  def body(html: true)
+    @renderer.content_for(:body, html: html)
+  end
+
+  def has_post_body?
+    !!post_body
+  end
+
+  def post_body(html: true)
+    @renderer.content_for(:post_body, html: html)
   end
 
   def response_label(value)

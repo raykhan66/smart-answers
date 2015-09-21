@@ -6,6 +6,15 @@ module SmartAnswer
       @locals = locals
       @view = ActionView::Base.new([@template_directory])
       helpers.each { |helper| @view.extend(helper) }
+      class << @view
+        def options(options = nil)
+          if options
+            @options = options
+          else
+            @options
+          end
+        end
+      end
     end
 
     def content_for(key, html: true)
@@ -14,6 +23,10 @@ module SmartAnswer
         content = strip_leading_spaces(content.to_str)
         html ? GovspeakPresenter.new(content).html : normalize_blank_lines(content)
       end
+    end
+
+    def options
+      @view.options || []
     end
 
     def erb_template_path
