@@ -4,18 +4,17 @@ module SmartAnswer
       attr_reader :permitted_options
 
       def initialize(flow, name, options = {}, &block)
-        @permitted_options = []
+        @permitted_options = {}
         super
       end
 
       def option(transitions, options = {})
         if transitions.is_a?(Hash)
-          transitions.each_pair do |option, next_node|
-            @permitted_options << option.to_s
-            next_node_if(next_node, responded_with(option.to_s))
+          transitions.each_pair do |option, text|
+            @permitted_options[option.to_s] = text
           end
         else
-          [*transitions].each { |option| @permitted_options << option.to_s }
+          raise 'Expected options to be a Hash'
         end
       end
 
@@ -24,7 +23,7 @@ module SmartAnswer
       end
 
       def valid_option?(option)
-        options.include?(option.to_s)
+        options.keys.include?(option.to_s)
       end
 
       def parse_input(raw_input)

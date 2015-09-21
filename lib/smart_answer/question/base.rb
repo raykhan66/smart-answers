@@ -15,6 +15,12 @@ module SmartAnswer
         super
       end
 
+      def next_node_map(options)
+        options.each do |option, next_node|
+          next_node_if(next_node, responded_with(option.to_s))
+        end
+      end
+
       def next_node(next_node = nil, &block)
         if block_given?
           @default_next_node_function = block

@@ -9,18 +9,23 @@ module SmartAnswer
       calculator = Calculators::AgriculturalHolidayEntitlementCalculator.new()
 
       multiple_choice :work_the_same_number_of_days_each_week? do
-        option "same-number-of-days" => :how_many_days_per_week?
-        option "different-number-of-days" => :what_date_does_holiday_start?
+        option "same-number-of-days": "Yes"
+        option "different-number-of-days": "No"
+
+        next_node_map(
+          "same-number-of-days": :how_many_days_per_week?,
+          "different-number-of-days": :what_date_does_holiday_start?
+        )
       end
 
       multiple_choice :how_many_days_per_week? do
-        option "7-days"
-        option "6-days"
-        option "5-days"
-        option "4-days"
-        option "3-days"
-        option "2-days"
-        option "1-day"
+        option "7-days": "7 days per week"
+        option "6-days": "6 days per week"
+        option "5-days": "5 days per week"
+        option "4-days": "4 days per week"
+        option "3-days": "3 days per week"
+        option "2-days": "2 days per week"
+        option "1-day": "1 day per week"
 
         calculate :days_worked_per_week do |response|
           # XXX: this is a bit nasty and takes advantage of the fact that
@@ -43,8 +48,8 @@ module SmartAnswer
       end
 
       multiple_choice :worked_for_same_employer? do
-        option "same-employer" => :done
-        option "multiple-employers" => :how_many_weeks_at_current_employer?
+        option "same-employer": "Yes"
+        option "multiple-employers": "No"
 
         calculate :holiday_entitlement_days do |response|
           if response == 'same-employer'
@@ -59,6 +64,11 @@ module SmartAnswer
             nil
           end
         end
+
+        next_node_map(
+          "same-employer": :done,
+          "multiple-employers": :how_many_weeks_at_current_employer?
+        )
       end
 
       value_question :how_many_total_days?, parse: Integer do
