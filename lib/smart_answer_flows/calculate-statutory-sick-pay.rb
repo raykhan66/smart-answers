@@ -42,7 +42,13 @@ module SmartAnswer
       # Question 3
       multiple_choice :employee_work_different_days? do
         option yes: :not_regular_schedule # Answer 4
-        option no: :first_sick_day? # Question 4
+        option no: :usual_work_days?
+      end
+
+      checkbox_question :usual_work_days? do
+        %w{1 2 3 4 5 6 0}.each { |n| option n.to_s }
+        save_input_as :usual_work_days
+        next_node(:first_sick_day?)
       end
 
       # Question 4
@@ -145,6 +151,10 @@ module SmartAnswer
         option eight_weeks_less: :total_earnings_before_sick_period? # Question 8
         option before_payday: :how_often_pay_employee_pay_patterns? # Question 5.2
 
+        calculate :calculator do
+          Calculators::StatutorySickPayCalculator.new(prior_sick_days.to_i, sick_start_date, sick_end_date, usual_work_days.split(","))
+        end
+
         save_input_as :eight_weeks_earnings
       end
 
@@ -213,13 +223,19 @@ module SmartAnswer
       money_question :total_employee_earnings? do
         save_input_as :relevant_period_pay
 
-        calculate :employee_average_weekly_earnings do
+        next_node_calculation :employee_average_weekly_earnings do |response|
           Calculators::StatutorySickPayCalculator.average_weekly_earnings(
-            pay: relevant_period_pay, pay_pattern: pay_pattern, monthly_pattern_payments: monthly_pattern_payments,
-            relevant_period_to: relevant_period_to, relevant_period_from: relevant_period_from)
+            pay: response,
+            pay_pattern: pay_pattern,
+            monthly_pattern_payments: monthly_pattern_payments,
+            relevant_period_to: relevant_period_to,
+            relevant_period_from: relevant_period_from
+          )
         end
 
-        next_node :usual_work_days?
+        next_node do
+          OutcomeDecision.new(self).outcome_name
+        end
       end
 
       # Question 9
@@ -233,12 +249,13 @@ module SmartAnswer
       value_question :contractual_days_covered_by_earnings? do
         save_input_as :contractual_earnings_days
 
-        calculate :employee_average_weekly_earnings do |response|
-          pay = relevant_contractual_pay
-          days_worked = response
-          Calculators::StatutorySickPayCalculator.contractual_earnings_awe(pay, days_worked)
+        next_node_calculation :employee_average_weekly_earnings do |response|
+          Calculators::StatutorySickPayCalculator.contractual_earnings_awe(relevant_contractual_pay, response)
         end
-        next_node :usual_work_days?
+
+        next_node do
+          OutcomeDecision.new(self).outcome_name
+        end
       end
 
       # Question 10
@@ -250,40 +267,8 @@ module SmartAnswer
 
       # Question 10.1
       value_question :days_covered_by_earnings? do
-
-        calculate :employee_average_weekly_earnings do |response|
-          pay = earnings
-          days_worked = response.to_i
-          Calculators::StatutorySickPayCalculator.total_earnings_awe(pay, days_worked)
-        end
-
-        next_node :usual_work_days?
-      end
-
-      # Q11
-      checkbox_question :usual_work_days? do
-        %w{1 2 3 4 5 6 0}.each { |n| option n.to_s }
-
-        calculate :ssp_payment do
-          Money.new(calculator.ssp_payment)
-        end
-
-        calculate :formatted_sick_pay_weekly_amounts do |response|
-          calculator = Calculators::StatutorySickPayCalculator.new(prior_sick_days.to_i, sick_start_date, sick_end_date, response.split(","))
-
-          if calculator.ssp_payment > 0
-            calculator.formatted_sick_pay_weekly_amounts
-          else
-            ""
-          end
-        end
-
-        next_node_calculation(:usual_work_days) do |response|
-          response
-        end
-
-        next_node_calculation(:calculator) do |response|
-          Calculators::StatutorySickPayCalculator.new(prior_sick_days.to_i, sick_start_date, sick_end_date, response.split(","))
+        next_node_calculation :employee_average_weekly_earnings do |response|
+          Calculators::StatutorySickPayCalculator.total_earnings_awe(earnings, response.to_i)
         end
 
         next_node do
@@ -309,10 +294,15 @@ module SmartAnswer
 
       # Answer 6
       outcome :entitled_to_sick_pay do
+        precalculate :ssp_payment do Money.new(calculator.ssp_payment) end
         precalculate :days_paid do calculator.days_paid end
         precalculate :normal_workdays_out do calculator.normal_workdays end
         precalculate :pattern_days do calculator.pattern_days end
         precalculate :pattern_days_total do calculator.pattern_days * 28 end
+
+        precalculate :formatted_sick_pay_weekly_amounts do
+          calculator.formatted_sick_pay_weekly_amounts
+        end
       end
 
       # Answer 7
