@@ -2,12 +2,69 @@
 en-GB:
   flow:
     landlord-immigration-check:
-      has_asylum_card?:
-        title: Does the person have an application for a Registration Card issued
-          by the Home Office showing that they can stay in the UK?
+      property?:
+        title: 'Enter the postcode of the property you want to let:'
+        error_postcode_invalid: 'Invalid postcode'
+        error_postcode_incomplete: 'Please enter a full postcode'
+      main_home?:
+        title: Is the person renting the property as their main and only home?
+        body: |-
+            This includes:
+
+            - tenancy agreement
+            - a lease
+            - a licence
+            - sub-lease or sub-tenancy
+            - lodgers
+            - paying house guests
+            - a family member living with the tenant as their main or only home
         options:
           'yes': 'Yes'
           'no': 'No'
+      tenant_over_18?:
+        title: Is the person at least 18 years of age?
+        options:
+          'yes': 'Yes'
+          'no': 'No'
+      property_type?:
+        title: What kind of property are you letting?
+        options:
+          holiday_accommodation: holiday accommodation
+          social_housing: social housing
+          care_home: a care home or hospice
+          hostel_or_refuge: a hostel or refuge
+          mobile_home: a mobile home
+          employee_accommodation: accommodation to an employee or as part of training,
+            eg tied accommodation
+          student_accommodation: student accommodation
+          7_year_lease_property: a residential property with a lease for 7 years or
+            more
+      has_uk_passport?:
+        title: Does the person have a current or expired UK or Republic of Ireland
+          passport or are they a named person in their parent’s UK or Republic of
+          Ireland passport?
+        body: A named person is someone who appears on someone else’s passport.
+        options:
+          'yes': 'Yes'
+          'no': 'No'
+      right_to_abode?:
+        title: Does the person have a certificate of right of abode in their passport?
+        options:
+          'yes': 'Yes'
+          'no': 'No'
+      has_certificate?:
+        title: Does the person have a Certificate of Registration or Naturalisation
+          as a British citizen?
+        options:
+          'yes': 'Yes'
+          'no': 'No'
+      tenant_country?:
+        title: 'Is the person:'
+        options:
+          eu_eea_switzerland: from the EU, EEA or Switzerland
+          non_eea_but_with_eu_eea_switzerland_family_member: a non-EEA family member
+            of someone from the EU, EEA or Switzerland
+          somewhere_else: from somewhere else
       has_documents?:
         title: 'Does the person have any of the following:'
         body: |-
@@ -37,68 +94,9 @@ en-GB:
         options:
           'yes': 'Yes'
           'no': 'No'
-      immigration_application?:
-        title: Does the person have an outstanding immigration application, immigration
-          appeal or administrative review?
-        body: They must also provide their Home Office reference number.
-        options:
-          'yes': 'Yes'
-          'no': 'No'
-      property?:
-        title: 'Enter the postcode of the property you want to let:'
-        error_postcode_invalid: 'Invalid postcode'
-        error_postcode_incomplete: 'Please enter a full postcode'
-      property_type?:
-        title: What kind of property are you letting?
-        options:
-          holiday_accommodation: holiday accommodation
-          social_housing: social housing
-          care_home: a care home or hospice
-          hostel_or_refuge: a hostel or refuge
-          mobile_home: a mobile home
-          employee_accommodation: accommodation to an employee or as part of training,
-            eg tied accommodation
-          student_accommodation: student accommodation
-          7_year_lease_property: a residential property with a lease for 7 years or
-            more
-      has_certificate?:
-        title: Does the person have a Certificate of Registration or Naturalisation
-          as a British citizen?
-        options:
-          'yes': 'Yes'
-          'no': 'No'
-      main_home?:
-        title: Is the person renting the property as their main and only home?
-        body: |-
-            This includes:
-
-            - tenancy agreement
-            - a lease
-            - a licence
-            - sub-lease or sub-tenancy
-            - lodgers
-            - paying house guests
-            - a family member living with the tenant as their main or only home
-        options:
-          'yes': 'Yes'
-          'no': 'No'
-      has_residence_card_or_eu_eea_swiss_family_member?:
-        title: Does the person have a current Residence Card that is issued by the
-          Home Office to a non-EEA national who is the family member of an EU, EEA
-          or Swiss national?
-        body: This includes a current Accession Card or Derivative Card.
-        options:
-          'yes': 'Yes'
-          'no': 'No'
-      tenant_country?:
-        title: 'Is the person:'
-        options:
-          eu_eea_switzerland: from the EU, EEA or Switzerland
-          non_eea_but_with_eu_eea_switzerland_family_member: a non-EEA family member
-            of someone from the EU, EEA or Switzerland
-          somewhere_else: from somewhere else
-      tenant_over_18?:
-        title: Is the person at least 18 years of age?
+      has_asylum_card?:
+        title: Does the person have an application for a Registration Card issued
+          by the Home Office showing that they can stay in the UK?
         options:
           'yes': 'Yes'
           'no': 'No'
@@ -111,16 +109,18 @@ en-GB:
         options:
           'yes': 'Yes'
           'no': 'No'
-      right_to_abode?:
-        title: Does the person have a certificate of right of abode in their passport?
+      immigration_application?:
+        title: Does the person have an outstanding immigration application, immigration
+          appeal or administrative review?
+        body: They must also provide their Home Office reference number.
         options:
           'yes': 'Yes'
           'no': 'No'
-      has_uk_passport?:
-        title: Does the person have a current or expired UK or Republic of Ireland
-          passport or are they a named person in their parent’s UK or Republic of
-          Ireland passport?
-        body: A named person is someone who appears on someone else’s passport.
+      has_residence_card_or_eu_eea_swiss_family_member?:
+        title: Does the person have a current Residence Card that is issued by the
+          Home Office to a non-EEA national who is the family member of an EU, EEA
+          or Swiss national?
+        body: This includes a current Accession Card or Derivative Card.
         options:
           'yes': 'Yes'
           'no': 'No'
