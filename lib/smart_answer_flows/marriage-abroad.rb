@@ -60,16 +60,18 @@ module SmartAnswer
 
         next_node do |response|
           calculator.marriage_or_pacs = response
-          if calculator.ceremony_country == 'monaco'
-            if calculator.want_to_get_married?
+          if calculator.want_to_get_married?
+            if calculator.ceremony_country == 'monaco'
               outcome :outcome_marriage_in_monaco
             else
-              outcome :outcome_civil_partnership_in_monaco
+              outcome :outcome_marriage_in_france_or_french_overseas_territory
             end
-          elsif calculator.want_to_get_married?
-            outcome :outcome_marriage_in_france_or_french_overseas_territory
           else
-            outcome :outcome_civil_partnership_in_france_or_french_overseas_territory
+            if calculator.ceremony_country == 'monaco'
+              outcome :outcome_civil_partnership_in_monaco
+            else
+              outcome :outcome_civil_partnership_in_france_or_french_overseas_territory
+            end
           end
         end
       end
