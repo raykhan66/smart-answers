@@ -1,5 +1,5 @@
 ---
-lib/smart_answer_flows/marriage-abroad.rb: 5f58f1ff2e3e5c4852565a8eeccd4b52
+lib/smart_answer_flows/marriage-abroad.rb: 9d98bec353eaa04c2d9ca54a2e1fc6c1
 test/data/marriage-abroad-questions-and-responses.yml: 2debf4d9c0e525b5fe3b44ca701e36e0
 test/data/marriage-abroad-responses-and-expected-results.yml: b1415318b0ecdba069d2fb6e601d4da1
 lib/smart_answer_flows/marriage-abroad/marriage_abroad.govspeak.erb: b4d0cfc1c7c4776d968c9b5b6df85027
@@ -110,7 +110,7 @@ lib/smart_answer_flows/marriage-abroad/outcomes/outcome_opposite_sex_marriage_in
 ? lib/smart_answer_flows/marriage-abroad/outcomes/outcome_opposite_sex_marriage_in_consular_cni_countries_when_residing_in_third_country.govspeak.erb
 : 9f9684fdb5bfcee8e131654dae5b31eb
 ? lib/smart_answer_flows/marriage-abroad/outcomes/outcome_opposite_sex_marriage_in_consular_cni_countries_when_residing_in_uk_or_ceremony_country.govspeak.erb
-: 3b4c525bf537a112b5b6fe1911c96a59
+: 40a3b7f01f96e586f1c698041d3fddce
 lib/smart_answer_flows/marriage-abroad/outcomes/outcome_opposite_sex_marriage_in_germany.govspeak.erb: e80afe8293f214d27675af77b804f4dc
 lib/smart_answer_flows/marriage-abroad/outcomes/outcome_opposite_sex_marriage_in_hong_kong.govspeak.erb: 9c1686c0a3ba24dff0297e4e04f2fae6
 lib/smart_answer_flows/marriage-abroad/outcomes/outcome_opposite_sex_marriage_in_indonesia.govspeak.erb: a5b4f25adb6e0ed710d859b63efd751e
