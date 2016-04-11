@@ -175,7 +175,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
                     end
 
                     should "show the results" do
-                      assert_current_node :current_payment_below
+                      assert_current_node :current_payment_below_minimum_wage
                     end
                   end
                 end
@@ -197,7 +197,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
                   end
 
                   should "show the results" do
-                    assert_current_node :current_payment_below
+                    assert_current_node :current_payment_below_minimum_wage
                   end
                 end
 
@@ -229,7 +229,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
                       end
 
                       should "show below min. wage results" do
-                        assert_current_node :current_payment_below
+                        assert_current_node :current_payment_below_minimum_wage
                       end
                     end
                   end # Accommodation
@@ -246,7 +246,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
                 add_response :no # no accommodation
               end
               should "show above min. wage results" do
-                assert_current_node :current_payment_above
+                assert_current_node :current_payment_above_minimum_wage
               end
             end # Basic pay
           end # Basic hours
@@ -267,7 +267,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
           add_response 7
         end
         should "be below the minimum wage" do
-          assert_current_node :current_payment_below
+          assert_current_node :current_payment_below_minimum_wage
         end
         should "make outcome calculations" do
           assert_equal 45, current_state.calculator.total_hours
@@ -321,7 +321,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
           add_response 7          # accom usage
         end
         should "be above the minimum wage" do
-          assert_current_node :current_payment_above
+          assert_current_node :current_payment_above_minimum_wage
         end
         should "make outcome calculations" do
           assert_equal 45, current_state.calculator.total_hours
@@ -349,7 +349,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
               add_response 'no' # accommodation
             end
             should 'should reach the above national living wage result outcome' do
-              assert_current_node :current_payment_above
+              assert_current_node :current_payment_above_living_wage
               assert_match /You are getting the National Living Wage./, outcome_body
             end
           end
@@ -360,7 +360,7 @@ class AmIGettingMinimumWageTest < ActiveSupport::TestCase
               add_response 'no' # accommodation
             end
             should ' should reach the below national living wage result outcome ' do
-              assert_current_node :current_payment_below
+              assert_current_node :current_payment_below_living_wage
               assert_match /You aren’t getting the National Living Wage./, outcome_body
             end
           end

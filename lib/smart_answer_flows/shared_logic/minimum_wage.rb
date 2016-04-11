@@ -195,12 +195,20 @@ multiple_choice :is_provided_with_accommodation? do
       question :current_accommodation_usage?
     when "yes_charged"
       question :current_accommodation_charge?
-    else
-      if calculator.minimum_wage_or_above?
-        outcome :current_payment_above
       else
-        outcome :current_payment_below
-      end
+        if calculator.minimum_wage_or_above?
+          if calculator.eligible_for_living_wage?
+            outcome :current_payment_above_living_wage
+          else
+            outcome :current_payment_above_minimum_wage
+          end
+        else
+          if calculator.eligible_for_living_wage?
+            outcome :current_payment_below_living_wage
+          else
+            outcome :current_payment_below_minimum_wage
+          end
+        end
     end
   end
 end
@@ -262,9 +270,17 @@ value_question :current_accommodation_usage?, parse: Integer do
   next_node do |response|
     calculator.accommodation_adjustment(accommodation_charge, response)
     if calculator.minimum_wage_or_above?
-      outcome :current_payment_above
+      if calculator.eligible_for_living_wage?
+        outcome :current_payment_above_living_wage
+      else
+        outcome :current_payment_above_minimum_wage
+      end
     else
-      outcome :current_payment_below
+      if calculator.eligible_for_living_wage?
+        outcome :current_payment_below_living_wage
+      else
+        outcome :current_payment_below_minimum_wage
+      end
     end
   end
 end
@@ -285,8 +301,10 @@ value_question :past_accommodation_usage?, parse: Integer do
   end
 end
 
-outcome :current_payment_above
-outcome :current_payment_below
+outcome :current_payment_above_minimum_wage
+outcome :current_payment_below_minimum_wage
+outcome :current_payment_above_living_wage
+outcome :current_payment_below_living_wage
 
 outcome :past_payment_above
 outcome :past_payment_below

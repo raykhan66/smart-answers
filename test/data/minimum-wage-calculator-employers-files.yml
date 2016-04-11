@@ -3,8 +3,10 @@ lib/smart_answer_flows/minimum-wage-calculator-employers.rb: 49ffb426915e1775168
 test/data/minimum-wage-calculator-employers-questions-and-responses.yml: ddadb3fc5fc1d82d77f53fbc90752d89
 test/data/minimum-wage-calculator-employers-responses-and-expected-results.yml: 3f047b0007e3432a77ea4e896ea763ea
 lib/smart_answer_flows/minimum-wage-calculator-employers/minimum_wage_calculator_employers.govspeak.erb: 4785f414ecc1fbab2a234582e4a12eed
-lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/current_payment_above.govspeak.erb: 213bc34a9df44bccd60642655f165eed
-lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/current_payment_below.govspeak.erb: 19282268790be35937da775f3abcc507
+lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/current_payment_above_minimum_wage.govspeak.erb: 213bc34a9df44bccd60642655f165eed
+lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/current_payment_above_living_wage.govspeak.erb: 213bc34a9df44bccd60642655f165eed
+lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/current_payment_below_minimum_wage.govspeak.erb: 19282268790be35937da775f3abcc507
+lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/current_payment_below_living_wage.govspeak.erb: 19282268790be35937da775f3abcc507
 lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/does_not_apply_to_historical_apprentices.govspeak.erb: b7db231cc648b8b6abc846efd5a840ff
 lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/past_payment_above.govspeak.erb: 7d7d67dc3b83ec3db36c165507df9afa
 lib/smart_answer_flows/minimum-wage-calculator-employers/outcomes/past_payment_below.govspeak.erb: 01e495068f33691669433bb9402a0aef
