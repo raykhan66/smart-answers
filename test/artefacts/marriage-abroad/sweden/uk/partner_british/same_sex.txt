@@ -1,35 +1,32 @@
-Civil partnership in Sweden
+Marriage in Sweden
 
-Same-sex relationships in Sweden that are recognised as civil partnerships under British law are known as:
+Contact the [Embassy of Sweden](/government/publications/foreign-embassies-in-the-uk) before making any plans to find out about local marriage laws, including what documents you’ll need.
 
-- marriage
-- ’registrerat partnerskap’, or ’registered partnership’.
-
-Contact the [Embassy of Sweden](/government/publications/foreign-embassies-in-the-uk) before making any plans to find out about local laws, including what documents you’ll need.
-
-You should also check the [travel advice for Sweden](/foreign-travel-advice/sweden).
+^You should [get legal advice](/government/collections/list-of-lawyers) and check the [travel advice for Sweden](/foreign-travel-advice/sweden) before making any plans.
 
 ##What you need to do
 
-You’ll be asked to provide a certificate of no impediment (CNI) to prove you’re allowed to enter into a civil partnership or equivalent in Sweden.
+You’ll be asked to provide a certificate of no impediment (CNI) to prove you’re allowed to marry.
 
-Contact the local British embassy or consulate where you’re planning the ceremony to find out what you need to do.
+You can normally get a CNI by giving a notice of marriage at your local register office or registrar in the UK. Find your local office or registrar in [England and Wales](https://www.gov.uk/register-offices), [Scotland](http://www.nrscotland.gov.uk/files/registration/reglist.pdf), [Northern Ireland](http://www.nidirect.gov.uk/index/information-and-services/government-citizens-and-rights/births-and-registration/district-registrars-in-northern-ireland.htm), [Isle of Man](http://www.gov.im/registries/general/civilregistry), [Jersey](http://www.gov.je/pages/contacts.aspx?contactId=71) or [Guernsey](http://www.guernseyroyalcourt.gg/article/1663/Contact-Us).
 
-$A
-British Embassy Stockholm
-Skarpögatan 6-8
-Box 27819
-115 93 Stockholm
-Sweden
-$A
+^A CNI issued in Scotland is valid for 3 months. A CNI issued in England, Wales or Northern Ireland will not expire. Check with your local register office to find out how long a CNI is valid if you live in the Channel Islands or the Isle of Man. You should also check with the local authorities in Sweden to find out how long a CNI is valid under local law.^
 
-$C
-Telephone: +46 (0)8 671 30 00
-Fax: +46 (0)8 662 99 89
+### Legalisation and translation
+You should  check if your CNI needs to be:
 
-Email: <Stockholm@fco.gov.uk>
+- ‘[legalised](/get-document-legalised)’ (certified as genuine)
+- translated - [find a translator abroad](/government/collections/list-of-lawyers), or in the UK through the [Institute of Linguists](http://www.ciol.org.uk)
 
-$C
+You should also check with the local authorities in Sweden to find out if you need to provide legalised and translated copies of any other documents.
+
+You’ll need to complete a [‘Notice of marriage’](/government/publications/notice-of-marriage-form--2) form and an [‘Affidavit for marriage’](/government/publications/affirmationaffidavit-of-marital-status-form) form.
+
+You can download and fill in (but not sign) the forms in advance.
+
+You must take the forms with you to your appointment.
+
+%The names on all documents you provide must appear exactly as they do on your passports - if not, the authorities may refuse to allow the marriage to go ahead. You may need to provide evidence if the name on your passport is different to your birth certificate (eg marriage certificate or deed poll).%
 
 ## Fees
 
@@ -40,6 +37,8 @@ Issuing a CNI, Nulla Osta or equivalent | £65
 You normally have to pay fees for consular services in the local currency - these are shown in the list of [consular fees for Sweden](/government/publications/sweden-consular-fees).
 
 You can pay by cash or credit card, but not by personal cheque.
+
+*[CNI]:certificate of no impediment
 
 
 
